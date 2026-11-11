@@ -62,6 +62,24 @@
     });
   }
 
+  var nastro = document.querySelector('.nastro-lista');
+  if (nastro) {
+    var frecce = Array.prototype.slice.call(document.querySelectorAll('.nastro-freccia'));
+    var calma = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var stato = function () {
+      var max = nastro.scrollWidth - nastro.clientWidth - 2;
+      frecce.forEach(function (f) { f.disabled = f.dataset.verso === '-1' ? nastro.scrollLeft <= 2 : nastro.scrollLeft >= max; });
+    };
+    frecce.forEach(function (f) {
+      f.addEventListener('click', function () {
+        nastro.scrollBy({ left: Number(f.dataset.verso) * nastro.clientWidth * 0.8, behavior: calma ? 'auto' : 'smooth' });
+      });
+    });
+    nastro.addEventListener('scroll', stato, { passive: true });
+    window.addEventListener('resize', stato);
+    stato();
+  }
+
   var modulo = document.getElementById('modulo');
   if (modulo) {
     var campo = function (id) { return document.getElementById(id); };
