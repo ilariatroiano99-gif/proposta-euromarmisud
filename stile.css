@@ -729,3 +729,25 @@ li + li > .lastra { border-top-width: 0; }
 .progetti { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); }
 .progetti p { max-width: 64ch; }
 @media (max-width: 1100px) { .progetti { grid-template-columns: 1fr; gap: 16px; } }
+
+/* Bottega: il marchio disegnato al posto della foto */
+.marchio-foglio {
+  position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3;
+  border: 1px solid var(--linea-forte); background: var(--carrara); padding: 48px;
+}
+.marchio-foglio::before, .marchio-foglio::after { content: ""; position: absolute; left: 48px; right: 48px; height: 1px; background: var(--azul); }
+.marchio-foglio::before { top: 24px; }
+.marchio-foglio::after { bottom: 24px; }
+.marchio-grande { width: 78%; height: auto; color: var(--inchiostro); }
+.bottega-marchio figcaption { margin-top: 16px; }
+.nastro-comandi:empty { display: none; }
+
+/* Telefono: nomi delle lastre dentro lo schermo */
+@media (max-width: 720px) {
+  .pila { width: 46%; }
+  .lastra-nome { font-size: 0.6875rem; letter-spacing: 0.04em; gap: 4px; left: calc(100% + 4px); }
+  .lastra-nome::before { width: 12px; }
+  .lastra:hover .lastra-nome::before, .lastra[aria-pressed="true"] .lastra-nome::before { width: 16px; }
+  .lastra:hover, .lastra:focus-visible, .lastra[aria-pressed="true"] { transform: translateX(8px); }
+  .marchio-foglio { padding: 32px; }
+}
