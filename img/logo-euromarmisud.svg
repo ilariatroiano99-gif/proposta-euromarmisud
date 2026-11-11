@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 136" role="img" aria-label="Euromarmi Sud">
+  <g fill="currentColor" fill-rule="evenodd">
+    <rect x="0" y="0" width="124" height="22" rx="3"/>
+    <path d="M0 34 H124 V58 H46 V78 H124 V130 H0 Z"/>
+    <path d="M138 130 V34 H234 C258 34 274 50 274 74 V130 Z M170 130 V74 C170 66 175 62 180 62 C185 62 190 66 190 74 V130 Z M222 130 V74 C222 66 227 62 232 62 C237 62 242 66 242 74 V130 Z"/>
+    <text x="284" y="34" transform="rotate(90 284 34)" font-family="Archivo, Arial, sans-serif" font-weight="800" font-size="26" letter-spacing="1">SUD</text>
+  </g>
+</svg>
