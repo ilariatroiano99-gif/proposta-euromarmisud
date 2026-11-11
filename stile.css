@@ -752,3 +752,10 @@ li + li > .lastra { border-top-width: 0; }
   .marchio-foglio { padding: 32px; }
 }
 .modulo input::placeholder, .modulo textarea::placeholder { color: var(--inchiostro-2); opacity: 0.72; }
+
+/* Telefono e tablet: le macchine staccate dal marchio, titolo vicino alla sua frase */
+@media (max-width: 1100px) {
+  .distinta { margin-top: 32px; padding-top: 48px; border-top: 1px solid var(--linea-forte); row-gap: 16px; }
+  .distinta h3 { margin-bottom: 0; }
+  .distinta table { margin-top: 16px; }
+}
