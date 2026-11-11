@@ -17,14 +17,6 @@
     var inquadra = function () { disegno.setAttribute('viewBox', stretto.matches ? '-24 -112 1008 800' : '-248 -112 1216 800'); };
     inquadra();
     stretto.addEventListener('change', inquadra);
-    if ('IntersectionObserver' in window) {
-      var osserva = new IntersectionObserver(function (voci) {
-        voci.forEach(function (v) { if (v.isIntersecting) { disegno.classList.add('in-vista'); osserva.disconnect(); } });
-      }, { threshold: 0.5 });
-      osserva.observe(disegno);
-    } else {
-      disegno.classList.add('in-vista');
-    }
   }
 
   var tavole = Array.prototype.slice.call(document.querySelectorAll('.tav'));
