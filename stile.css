@@ -78,7 +78,7 @@ p { margin: 0; text-wrap: pretty; }
   position: sticky; top: 0; z-index: 10;
   display: flex; align-items: center; gap: 32px;
   height: 64px; padding: 0 var(--margine);
-  background: rgba(238, 240, 239, 0.94);
+  background: var(--carrara);
   border-bottom: 1px solid var(--linea-forte);
 }
 .marchio {
@@ -670,3 +670,62 @@ h2 {
 .nastro-lista { align-items: flex-start; }
 .nastro .tav a, .nastro .tav figure { height: auto; }
 .nastro-fine { align-self: stretch; }
+
+/* Lavori: titolo a sinistra, pila dei campioni a destra */
+.lavori .lavori-testa { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); align-items: end; gap: 48px; }
+.lavori-titoli h2 { margin-bottom: 24px; }
+.lavori-titoli p { color: var(--inchiostro-2); max-width: 48ch; }
+.pila-zona { justify-self: stretch; }
+.pila-invito { font-size: 0.875rem; font-weight: 700; font-stretch: 88%; letter-spacing: 0.02em; color: var(--azul); margin-bottom: 16px; }
+.pila { list-style: none; margin: 0; padding: 0; width: 56%; display: flex; flex-direction: column; }
+.lastra {
+  position: relative; display: block; width: var(--l); height: var(--h); margin-left: var(--x);
+  padding: 0; border: 1px solid var(--inchiostro); border-radius: 0; cursor: pointer;
+  background: var(--foto) center / cover; font: inherit; color: inherit; text-align: left;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), outline-color 200ms;
+}
+li + li > .lastra { border-top-width: 0; }
+.lastra-nome {
+  position: absolute; left: calc(100% + 8px); top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center; gap: 8px; white-space: nowrap;
+  font-size: 0.75rem; font-weight: 700; font-stretch: 85%; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--inchiostro-2); transition: color 200ms;
+}
+.lastra-nome::before { content: ""; width: 24px; height: 1px; background: var(--azul); transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1); }
+.lastra:hover, .lastra:focus-visible, .lastra[aria-pressed="true"] { transform: translateX(16px); }
+.lastra:hover .lastra-nome, .lastra[aria-pressed="true"] .lastra-nome { color: var(--azul); }
+.lastra:hover .lastra-nome::before, .lastra[aria-pressed="true"] .lastra-nome::before { width: 40px; }
+.lastra[aria-pressed="true"] { outline: 2px solid var(--azul); outline-offset: 2px; z-index: 1; }
+.pila-tutte {
+  margin-top: 16px; padding: 8px 0; background: none; border: 0; cursor: pointer;
+  font: inherit; font-size: 0.875rem; font-weight: 700; color: var(--azul);
+  text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;
+}
+.pila-tutte[hidden] { display: none; }
+.nastro .tav[hidden] { display: none; }
+
+/* Carrellata piu piccola: quattro o cinque lavori visibili */
+.nastro .tav img { height: clamp(208px, 17vw, 264px); }
+.nastro .tav figcaption { font-size: 0.8125rem; }
+
+/* Lavori oltre le abitazioni */
+.progetti-elenco { margin: 0; border-top: 1px solid var(--linea-forte); }
+.progetti-elenco div { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--linea); }
+.progetti-elenco dt { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--azul); padding-top: 4px; }
+.progetti-elenco dd { margin: 0; font-weight: 500; }
+
+@media (max-width: 1100px) {
+  .lavori .lavori-testa { grid-template-columns: 1fr; gap: 40px; }
+  .progetti-elenco { grid-column: 1 / -1; }
+}
+@media (max-width: 720px) {
+  .pila { width: 52%; }
+  .nastro .tav img { height: 200px; }
+  .nastro-comandi { margin-top: 8px; }
+  .progetti-elenco div { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) { .lastra, .lastra-nome::before { transition: none; } }
+.nastro .tav img, .nastro .tav.alta img { aspect-ratio: 4 / 3; object-position: center 40%; }
+.progetti { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); }
+.progetti p { max-width: 64ch; }
+@media (max-width: 1100px) { .progetti { grid-template-columns: 1fr; gap: 16px; } }

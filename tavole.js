@@ -80,6 +80,23 @@
     stato();
   }
 
+  var lastre = Array.prototype.slice.call(document.querySelectorAll('.lastra'));
+  var tutte = document.querySelector('.pila-tutte');
+  if (lastre.length && nastro) {
+    var carte = Array.prototype.slice.call(nastro.querySelectorAll('.tav'));
+    var scegli = function (pietra) {
+      lastre.forEach(function (l) { l.setAttribute('aria-pressed', String(l.dataset.pietra === pietra)); });
+      carte.forEach(function (c) { c.hidden = !!pietra && (' ' + c.dataset.pietre + ' ').indexOf(' ' + pietra + ' ') === -1; });
+      tutte.hidden = !pietra;
+      nastro.scrollLeft = 0;
+      if (typeof stato === 'function') stato();
+    };
+    lastre.forEach(function (l) {
+      l.addEventListener('click', function () { scegli(l.getAttribute('aria-pressed') === 'true' ? null : l.dataset.pietra); });
+    });
+    tutte.addEventListener('click', function () { scegli(null); });
+  }
+
   var modulo = document.getElementById('modulo');
   if (modulo) {
     var campo = function (id) { return document.getElementById(id); };
