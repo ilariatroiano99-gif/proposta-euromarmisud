@@ -105,47 +105,6 @@
     tutte.addEventListener('click', function () { scegli(null); });
   }
 
-  var vista = document.querySelector('.vista');
-  if (vista && nastro && typeof vista.showModal === 'function') {
-    var nomiPagine = { 'camini-in-marmo.html': 'Vedi tutti i camini', 'pavimenti-e-intarsi.html': 'Vedi tutti i pavimenti e intarsi', 'scale-in-marmo.html': 'Vedi tutte le scale', 'portali-in-pietra.html': 'Vedi tutti i portali', 'arte-funeraria.html': 'Vedi tutta l\'arte funeraria' };
-    var schede = function () { return Array.prototype.slice.call(nastro.querySelectorAll('.tav')).filter(function (c) { return !c.hidden; }); };
-    var attuale = 0, origine = null;
-    var mostra = function (i) {
-      var lista = schede(); if (!lista.length) return;
-      attuale = (i + lista.length) % lista.length;
-      var c = lista[attuale], img = c.querySelector('img'), a = c.querySelector('a');
-      vista.querySelector('.vista-foto').src = img.getAttribute('src');
-      vista.querySelector('.vista-foto').alt = img.alt;
-      vista.querySelector('.vista-cod').textContent = c.querySelector('.tav-n').textContent;
-      vista.querySelector('.vista-titolo').textContent = c.querySelector('.tav-t').textContent;
-      vista.querySelector('.vista-pietre').textContent = c.querySelector('.tav-m').textContent;
-      vista.querySelector('.vista-conto').textContent = (attuale + 1) + ' / ' + lista.length;
-      var pg = vista.querySelector('.vista-pagina'); pg.href = a.getAttribute('href'); pg.textContent = nomiPagine[a.getAttribute('href')] || 'Vedi la pagina';
-    };
-    nastro.addEventListener('click', function (e) {
-      var a = e.target.closest('.tav a'); if (!a) return;
-      e.preventDefault(); origine = a;
-      mostra(schede().indexOf(a.closest('.tav')));
-      vista.showModal();
-    });
-    vista.querySelector('.vista-prec').addEventListener('click', function () { mostra(attuale - 1); });
-    vista.querySelector('.vista-succ').addEventListener('click', function () { mostra(attuale + 1); });
-    vista.querySelector('.vista-chiudi').addEventListener('click', function () { vista.close(); });
-    vista.addEventListener('click', function (e) { if (e.target === vista) vista.close(); });
-    vista.addEventListener('close', function () { if (origine) origine.focus(); });
-    vista.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowLeft') mostra(attuale - 1);
-      if (e.key === 'ArrowRight') mostra(attuale + 1);
-    });
-    var x0 = null;
-    var foto = vista.querySelector('.vista-foto');
-    foto.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
-    foto.addEventListener('touchend', function (e) {
-      if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null;
-      if (Math.abs(dx) > 48) mostra(attuale + (dx < 0 ? 1 : -1));
-    });
-  }
-
   var modulo = document.getElementById('modulo');
   if (modulo) {
     var campo = function (id) { return document.getElementById(id); };

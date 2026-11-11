@@ -764,33 +764,3 @@ li + li > .lastra { border-top-width: 0; }
 .anima .disegno:not(.in-vista) path,
 .anima .disegno:not(.in-vista) text,
 .anima .disegno:not(.in-vista) marker path { animation-play-state: paused; }
-
-/* Foto del lavoro aperta da sola */
-.vista {
-  width: min(1040px, calc(100vw - 2 * var(--margine))); max-height: calc(100dvh - 32px);
-  padding: 24px; border: 1px solid var(--linea-forte); background: var(--carrara); color: var(--inchiostro);
-  overflow: auto; overscroll-behavior: contain;
-}
-.vista::backdrop { background: rgba(21, 25, 28, 0.72); }
-.vista-foglio { margin: 0; position: relative; }
-.vista-foglio::before { content: ""; position: absolute; top: -8px; left: -8px; width: 16px; height: 16px; border-top: 2px solid var(--azul); border-left: 2px solid var(--azul); }
-.vista-foto { display: block; width: 100%; max-height: calc(100dvh - 240px); object-fit: contain; background: var(--carrara-2); border: 1px solid var(--linea-forte); padding: 8px; touch-action: pan-y; }
-.vista figcaption { display: grid; grid-template-columns: auto 1fr; column-gap: 16px; padding-top: 16px; }
-.vista .tav-t { font-size: 1.125rem; }
-.vista-comandi { display: flex; align-items: stretch; gap: 8px; margin-top: 24px; }
-.vista-conto { align-self: center; min-width: 64px; text-align: center; font-weight: 700; font-stretch: 85%; font-variant-numeric: tabular-nums; color: var(--inchiostro-2); }
-.vista-pagina.bottone { margin-left: auto; border: 1px solid var(--azul); min-width: 240px; }
-.vista-chiudi {
-  position: absolute; top: 24px; right: 24px; width: 48px; height: 48px; display: grid; place-items: center;
-  background: var(--carrara); border: 1px solid var(--linea-forte); color: var(--inchiostro); cursor: pointer; border-radius: 0;
-}
-.vista-chiudi:hover { background: var(--azul-velo); }
-.vista-chiudi svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; }
-.vista-foglio { padding-top: 0; }
-@media (max-width: 720px) {
-  .vista { padding: 16px; width: calc(100vw - 16px); }
-  .vista-chiudi { top: 16px; right: 16px; width: 40px; height: 40px; }
-  .vista-comandi { flex-wrap: wrap; }
-  .vista-comandi .nastro-freccia { display: grid; width: 56px; min-height: 56px; }
-  .vista-pagina.bottone { margin-left: 0; width: 100%; min-width: 0; }
-}
