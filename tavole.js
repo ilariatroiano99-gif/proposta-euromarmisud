@@ -132,7 +132,7 @@
         'Telefono: ' + (dato('m-tel') || 'non indicato'),
         'Email: ' + (dato('m-email') || 'non indicata'),
         'Tipo di lavoro: ' + lavoro.options[lavoro.selectedIndex].text,
-        'Pietra: ' + (dato('m-pietra') || 'da definire'),
+        'Materiale desiderato: ' + (dato('m-pietra') || 'da definire'),
         'Comune: ' + (dato('m-comune') || 'non indicato'),
         '',
         dato('m-testo')

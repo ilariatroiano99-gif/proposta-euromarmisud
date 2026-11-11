@@ -751,3 +751,4 @@ li + li > .lastra { border-top-width: 0; }
   .lastra:hover, .lastra:focus-visible, .lastra[aria-pressed="true"] { transform: translateX(8px); }
   .marchio-foglio { padding: 32px; }
 }
+.modulo input::placeholder, .modulo textarea::placeholder { color: var(--inchiostro-2); opacity: 0.72; }
